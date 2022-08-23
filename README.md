@@ -35,7 +35,7 @@ aws ec2 run-instances --image-id <value> --count <value> --instance-type <value>
 4. Login to Master machine and run script 'setup-jmeter-lab.sh' and pass number of slaves, git userid, git password and S3 bucket folder as command line args.
 
 ```
-#### For 10 slaves
+# For 10 slaves
 sh setup-jmeter-lab.sh 10 <github_username> <github_pwd> <github-branch-name> <data-folder-name>
 ```
 
