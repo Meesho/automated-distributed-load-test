@@ -1,0 +1,28 @@
+- hosts: all
+  become: yes
+  strategy: free
+
+  vars:
+    repo_name: automated-distributed-load-test
+
+  tasks:
+  - name: Wait for slaves to become reachable over ssh
+    wait_for_connection:
+      timeout: 900
+
+  - name: Download the Latest repo from github
+    git:
+       repo: 'https://{{git_user}}:{{git_pass}}@github.com/{{repo_name}}.git'
+       dest: "/home/ubuntu/{{repo_name}}"
+       version: "{{git_branch}}"
+       update: yes
+
+  - name: Start jmeter-server
+    become: yes
+    command: bash -lc "cd /home/ubuntu/{{repo_name}}/jmeter/apache-jmeter-5.4.2/bin/ && nohup sh jmeter-server &"
+
+  - name: copying file with playbook
+    become: yes
+    copy:
+      src: /tmp/datadir/{{ansible_ssh_host}}/
+      dest: /home/ubuntu/{{repo_name}}/jmeter/apache-jmeter-5.4.2/bin
