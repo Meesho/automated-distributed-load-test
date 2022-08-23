@@ -4,7 +4,7 @@ dir=$(pwd)
 
 ## Create and clean if exists already
 mkdir -p /tmp/datadir && cd /tmp/datadir && rm -r *.*
-aws s3 cp s3://perf-datafiles-distributed/$1/ ./ --recursive
+aws s3 cp s3://<bucket-name>/$1/ ./ --recursive
 
 ## Create folders for the entries in the hosts files
 while read p; do  mkdir /tmp/datadir/$p; done < $dir/ansible-jmeter-slaves/hosts
