@@ -29,7 +29,7 @@ Steps to run the tests:
 3. Create a Master machine using AMI.You can use this command to launch your instance if you have aws cli setup. 
 
 ```
-aws ec2 run-instances --image-id ami-test123 --count 1 --instance-type c5.2xlarge --key-name key-test123 --security-group-ids <security-grou --subnet-id subnet-test123
+aws ec2 run-instances --image-id <value> --count <value> --instance-type <value> --key-name <value> --security-group-ids <value> --subnet-id <value>
 ```
 
 4. Login to Master machine and run script 'setup-jmeter-lab.sh' and pass number of slaves, git userid, git password and S3 bucket folder as command line args.
